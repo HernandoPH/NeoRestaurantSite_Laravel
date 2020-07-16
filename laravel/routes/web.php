@@ -16,3 +16,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/usuarios','UserController@index')->name('users.index');
+
+Route::get('/usuarios/{id}','UserController@show')
+->where('id','[0-9]+')
+->name('users.show');
+
+
+Route::get('/usuarios/nuevo', 'UserController@create')->name('users.nuevo');
+Route::post('/usuarios', 'UserController@Store')->name('users.store');
+
