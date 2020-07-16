@@ -144,7 +144,6 @@
 
 
 <a href="{{ route('users.index') }}">Volver a Listas de Usuarios</a>
-{{dd($errors)}}
 @if($errors->any())
 <h1>HAY ERRORES</h1>
 @endif
