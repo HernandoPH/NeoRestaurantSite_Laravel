@@ -43,21 +43,44 @@
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                     <h3 class="register-heading">Registro de Empleado</h3>
+
+                    <!--Errores Notificacion-->
+                  {{--  @if($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{$error}} </li>    
+                        @endforeach
+                        </ul>
+                    </div>
+                    @endif--}}
+                    <!--Errores Notificacion-->
+                    
                     <div class="row register-form">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="text" name="name" class="form-control" placeholder=" Nombre *" value="" />
+                                <input type="text" name="name" class="form-control" placeholder=" Nombre *" value="{{old('name')}} " />
+                                @if ($errors->has('name'))
+                                <p class="errores-registro">{{$errors->first('name')}} </p> 
+                                @endif
                             </div>
                          
                             
                             <div class="form-group">
-                                <input type="email" name="email" class="form-control" placeholder="Introduce tu Email *" value="" />
+                                <input type="email" name="email" class="form-control" placeholder="Introduce tu Email *" value="{{old('email')}} " />
+                                @if ($errors->has('email'))
+                                <p class="errores-registro">{{$errors->first('email')}} </p> 
+                                @endif
                             </div>
                             <div class="form-group">
                                 <input type="password" name="password" class="form-control" placeholder="Contraseña *" value="" />
+                                @if ($errors->has('password'))
+                                <p class="errores-registro">{{$errors->first('password')}} </p> 
+                                @endif
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Puesto/Rol" value="" />
+                                <input type="text" name="role" class="form-control" placeholder="Puesto/Rol" value="{{old('role')}} " />
+                                
                             </div>
                             <div class="form-group">
                                 <label style="font-weight: bold;">Género</label>
@@ -144,9 +167,7 @@
 
 
 <a href="{{ route('users.index') }}">Volver a Listas de Usuarios</a>
-@if($errors->any())
-<h1>HAY ERRORES</h1>
-@endif
+
 
 
 @endsection

@@ -43,12 +43,14 @@ class UserController extends Controller
     public function Store(){
         $data = request()->validate([
             'name'=>'required',
-            'email'=>'required',
+            'email'=>'required|email|unique:users,email',
             'password'=>'required'
         ],[
-            'name'=>'Nombre es Obligatorio',
-            'email'=>'Email es Obligatorio',
-            'password'=>'Constraseña es Obligatoria',
+            'name.required'=>'Nombre es Obligatorio',
+            'email.required'=>'Email es Obligatorio',
+            'password.required'=>'Constraseña es Obligatoria',
+            'email.unique' => 'Ya existe un usuario con ese email'
+
 
 
         ]);
