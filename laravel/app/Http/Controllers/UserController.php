@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
+
 
 
 class UserController extends Controller
@@ -64,5 +66,32 @@ class UserController extends Controller
        // return view('users.store'); 
 
    
+    }
+    public function edit($id){
+        $user=User::find($id);
+        if($user==null){
+            return view('error.404');
+        }
+       return view('users.edit',compact('user')); 
+    }
+    public function update(User $user){
+        $data=request()->validate([
+            'name'=> 'required' ,
+            'email' => ['required', 'email', Rule::unique('users')->ignore($user->id)],
+            'password'=> '' ,
+
+        ]);
+        $data['password']=bcrypt($data['password']);
+        $user->update($data);
+
+      //  return redirect()->route('users.show',['user'=>$user]);
+        return redirect("usuarios/{$user->id} ");
+    }
+
+    public function destroy(User $user){
+        
+        $user->delete();
+        return redirect()->route('users.index');
+      //  return redirect("usuarios/{$user->id} ");
     }
 }

@@ -8,6 +8,8 @@
 <p >Nombre de Usuario-> {{$user->name}} </p>
 <p>Email-> {{$user->email}} </p>
 <a href="{{ route('users.index') }}">Volver a Listas de Usuarios</a>
+<a style="margin-left:50px" href="{{ route('users.editar',['id'=>$user->id]) }}">Editar Usuario {{$user->name}} </a>
+
 
 
 
