@@ -13,11 +13,17 @@ class DatabaseSeeder extends Seeder
     {
        $this->truncatedTables([
            'roles',
-           'users'
+           'users',
+           'categorias',
+           'menu'
        ]);
         // $this->call(UserSeeder::class);
          $this->call(RoleSeeder::class);
          $this->call(UserSeeder::class);
+         $this->call(categoriasSeeder::class);
+         $this->call(menuSeeder::class);
+
+
 
          
 

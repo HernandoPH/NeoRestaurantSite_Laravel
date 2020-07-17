@@ -13,10 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-});
+});*/
+Route::get('/','HomeController@index')->name('home.index');
+Route::get('/menu','HomeController@menu')->name('home.menu');
+
+
 Route::get('/usuarios','UserController@index')->name('users.index');
+
 
 Route::get('/usuarios/{id}','UserController@show')
 ->where('id','[0-9]+')
